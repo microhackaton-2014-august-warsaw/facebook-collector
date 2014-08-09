@@ -25,27 +25,11 @@ import org.springframework.amqp.core.BindingBuilder;
 @EnableCaching
 @EnableAsync
 class Application {
-    final static String queueName = "facebook";
-    final static String topicName = "facebook";
+
     static void main(String[] args) {
         SpringApplication application = new SpringApplication(Application)
         application.addListeners(new EnvironmentSetupVerifier(Profiles.all()))
         application.run(args)
     }
-
-//    	@Bean
-//    	Queue queue() {
-//    		return new Queue(queueName, false);
-//    	}
-//
-//    	@Bean
-//    	TopicExchange exchange() {
-//    		return new TopicExchange(topicName);
-//    	}
-//
-//    	@Bean
-//    	Binding binding(Queue queue, TopicExchange exchange) {
-//    		return BindingBuilder.bind(queue).to(exchange).with(queueName);
-//    	}
 
 }
