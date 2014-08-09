@@ -119,6 +119,9 @@ dependencies {
     }
     compile 'com.ofg:micro-infra-spring:0.0.3'
 
+    compile("org.springframework:spring-jms")
+    compile("org.apache.activemq:activemq-broker")
+
     runtime "cglib:cglib-nodep:3.1"
     runtime "org.objenesis:objenesis:2.1" // allows mocking of classes without default constructor (together with CGLIB)
     runtime 'org.aspectj:aspectjweaver:1.8.1'
