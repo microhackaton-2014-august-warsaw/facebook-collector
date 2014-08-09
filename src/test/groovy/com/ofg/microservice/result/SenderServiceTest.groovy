@@ -1,5 +1,6 @@
 package com.ofg.microservice.result
 
+import com.ofg.base.MicroserviceIntegrationSpec
 import com.ofg.microservice.Application
 import org.junit.Test
 import org.junit.runner.RunWith
@@ -8,16 +9,12 @@ import org.springframework.boot.test.SpringApplicationContextLoader
 import org.springframework.test.context.ContextConfiguration
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner
 
-/**
- * Created by januszsidor on 09/08/14.
- */
-@RunWith(SpringJUnit4ClassRunner.class)
-@ContextConfiguration(classes = Application.class, loader = SpringApplicationContextLoader.class)
-class SenderServiceTest extends GroovyTestCase {
+class SenderServiceTest extends MicroserviceIntegrationSpec {
     @Autowired
     SenderService senderService
-    @Test
-    void testPost() {
+
+    def 'asd'() {
+        expect:
         senderService.post("sasas", 111);
     }
 }
