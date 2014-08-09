@@ -28,7 +28,6 @@ class FacebookDataBroadcaster {
         this.jmsTemplate = jmsTemplate
     }
 
-    @Override
     public void broadcast(FacebookData data, long pairId){
         jmsTemplate.send(TOPIC_NAME, new FacebookMessageCreator(data, pairId))
     }
