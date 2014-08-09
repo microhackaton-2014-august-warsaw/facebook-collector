@@ -31,7 +31,7 @@ ext {
     
     groovyVersion = '2.3.6'
     spockVersion = '0.7-groovy-2.0'
-    springBootVersion = '1.1.4.RELEASE'
+    springBootVersion = '1.1.5.RELEASE'
     springVersion = '4.0.6.RELEASE'
     jacksonMapper = '1.9.13'
     aspectjVersion = '1.8.1'
@@ -94,6 +94,7 @@ dependencies {
     versionManagement 'io.spring.platform:platform-versions:1.0.1.RELEASE@properties'
     compile "org.springframework.boot:spring-boot-starter-web:$springBootVersion"
     compile "org.springframework.boot:spring-boot-starter-actuator:$springBootVersion"
+    compile "org.springframework.boot:spring-boot-starter-social-facebook:$springBootVersion"
     compile "org.springframework:spring-context-support:$springVersion"
     compile "org.codehaus.groovy:groovy-all:$groovyVersion:indy"
     compile 'com.fasterxml.jackson.core:jackson-databind:2.4.1.3'

@@ -14,8 +14,9 @@ import org.springframework.scheduling.annotation.EnableAsync
 @Configuration
 @EnableAutoConfiguration
 @EnableAspectJAutoProxy(proxyTargetClass = true)
-@ComponentScan(basePackages = ["com.ofg.microservice", "com.ofg.twitter", "com.mangofactory.swagger"])
+@ComponentScan(basePackages = ["com.ofg.microservice", "com.mangofactory.swagger"])
 @EnableCaching
+@EnableAsync
 class Application {
 
     static void main(String[] args) {
