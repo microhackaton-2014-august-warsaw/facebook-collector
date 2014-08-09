@@ -5,6 +5,7 @@ import groovy.util.logging.Slf4j
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.cache.annotation.Cacheable
 import org.springframework.social.facebook.api.Facebook
+import org.springframework.social.facebook.api.FacebookProfile
 
 @Slf4j
 @TypeChecked
@@ -19,7 +20,9 @@ class FacebookRepository {
 
     @Cacheable(FacebookConfig.CACHE_NAME)
     FacebookData loadFacebookData(String facebookId, long pairId) {
-        return new FacebookData()
+        FacebookProfile profile = facebook.userOperations().getUserProfile(facebookId)
+        FacebookData data = new FacebookData(profile)
+        return data
     }
 
 }
