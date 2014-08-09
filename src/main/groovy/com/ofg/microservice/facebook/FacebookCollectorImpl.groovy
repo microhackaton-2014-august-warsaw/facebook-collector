@@ -18,8 +18,8 @@ class FacebookCollectorImpl implements FacebookCollector {
     }
 
     @Override
-    void collectAndPassToAnalyzers(long pairId) {
-        FacebookData data = repository.loadFacebookData(pairId)
+    void collectAndPassToAnalyzers(String facebookId, long pairId) {
+        FacebookData data = repository.loadFacebookData(facebookId, pairId)
         broadcaster.broadcast(data, pairId)
     }
 }

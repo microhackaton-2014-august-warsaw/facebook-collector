@@ -18,7 +18,7 @@ class FacebookRepository {
     }
 
     @Cacheable(FacebookConfig.CACHE_NAME)
-    FacebookData loadFacebookData(long pairId) {
+    FacebookData loadFacebookData(String facebookId, long pairId) {
         return new FacebookData()
     }
 

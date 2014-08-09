@@ -27,10 +27,10 @@ class FacebookCollectorController {
 
     @ResponseStatus(OK)
     @RequestMapping(method = GET, value = '/{facebookId}/{pairId}', produces = 'application/json')
-    void getPlacesFromTweets(@PathVariable @NotNull long pairId) {
+    void getPlacesFromTweets(@PathVariable @NotNull String facebookId, @PathVariable @NotNull long pairId) {
         try {
             MDC.put("correlationId", pairId)
-            collector.collectAndPassToAnalyzers(pairId)
+            collector.collectAndPassToAnalyzers(facebookId, pairId)
         }
         finally {
             MDC.clear()
