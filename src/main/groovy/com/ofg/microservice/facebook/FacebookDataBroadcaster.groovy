@@ -1,55 +1,33 @@
 package com.ofg.microservice.facebook
 
+import com.fasterxml.jackson.databind.ObjectMapper
+import com.fasterxml.jackson.databind.ObjectWriter
 import groovy.transform.TypeChecked
 import groovy.util.logging.Slf4j
+import org.springframework.amqp.core.Message
+import org.springframework.amqp.core.MessageBuilder
+import org.springframework.amqp.core.MessageProperties
+import org.springframework.amqp.rabbit.core.RabbitTemplate
 import org.springframework.beans.factory.annotation.Autowired
-import org.springframework.jms.core.JmsTemplate
-import org.springframework.jms.core.MessageCreator
 import org.springframework.stereotype.Component
-
-import javax.jms.JMSException
-import javax.jms.Message
-import javax.jms.Session
-import javax.jms.TextMessage
 
 @Slf4j
 @Component
 @TypeChecked
 class FacebookDataBroadcaster {
-
-    final static String PAIR_ID = "PAIR_ID"
-
     final static String TOPIC_NAME = "facebook";
-
-    private final JmsTemplate jmsTemplate
-
     @Autowired
-    FacebookDataBroadcaster(JmsTemplate jmsTemplate) {
-        this.jmsTemplate = jmsTemplate
-    }
+    RabbitTemplate template;
 
     public void broadcast(FacebookData data, long pairId){
-        jmsTemplate.send(TOPIC_NAME, new FacebookMessageCreator(data, pairId))
-    }
+        ObjectWriter ow = new ObjectMapper().writer().withDefaultPrettyPrinter();
+        String json = ow.writeValueAsString(data);
 
-    static class FacebookMessageCreator implements MessageCreator {
+        Message message = MessageBuilder.withBody(json.getBytes())
+               	.setContentType(MessageProperties.CONTENT_TYPE_JSON)
+               	.setMessageId(String.valueOf(pairId))
+               	.build();
 
-        private final FacebookData data
-
-        private final long pairId
-
-        FacebookMessageCreator(FacebookData data, long pairId) {
-            this.pairId = pairId
-            this.data = data
-        }
-
-        @Override
-        Message createMessage(Session session) throws JMSException {
-            // org.springframework.jms.support.converter.MappingJackson2MessageConverter
-            TextMessage message = session.createTextMessage(data.toString()); // FIXME USE Jackson Mapper to get JSON
-            message.setLongProperty(PAIR_ID, pairId);
-            log.info("Sending for pairID {} message: {}",  pairId, data);
-            return message;
-        }
+        template.send(TOPIC_NAME, "", message);
     }
 }

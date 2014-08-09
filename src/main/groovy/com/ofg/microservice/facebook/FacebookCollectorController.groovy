@@ -30,7 +30,7 @@ class FacebookCollectorController {
     void getPlacesFromTweets(@PathVariable @NotNull long pairId) {
         try {
             MDC.put("correlationId", pairId)
-            collector.collectAndPassToAnalyzers(pairId)
+            collecdPassToAnalyzers(pairId)
         }
         finally {
             MDC.clear()

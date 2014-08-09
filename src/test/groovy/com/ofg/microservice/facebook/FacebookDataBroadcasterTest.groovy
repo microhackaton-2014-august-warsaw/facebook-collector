@@ -14,7 +14,8 @@ class FacebookDataBroadcasterTest extends MicroserviceIntegrationSpec {
     FacebookDataBroadcaster senderService
 
     @Test
-    void testPost() {
+    void "tets"() {
+        expect:
         senderService.broadcast(new FacebookData(), 111L);
     }
 }

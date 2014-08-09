@@ -1,4 +1,11 @@
 package com.ofg.microservice.facebook;
 
-public class FacebookData {
+import java.io.Serializable;
+
+public class FacebookData implements Serializable{
+    String data;
+
+    public String getData() {
+        return data;
+    }
 }
