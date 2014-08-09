@@ -1,0 +1,23 @@
+language: groovy
+jdk:
+- oraclejdk8
+
+install:
+- true
+
+before_script:
+ - "echo $JAVA_OPTS"
+ - "export JAVA_OPTS=-Xmx512m"
+
+script:
+- ./gradlew build --stacktrace
+
+env:
+- TERM=dumb
+
+after_success:
+# Add deployToAws to deploy to AWS :)
+#- ./gradlew build deployToAws -PbuildNr=$TRAVIS_BUILD_NUMBER --info --stacktrace
+- ./gradlew build -PbuildNr=$TRAVIS_BUILD_NUMBER --info --stacktrace
+- ./gradlew test jacocoTestReport coveralls -Pcoverage
+
