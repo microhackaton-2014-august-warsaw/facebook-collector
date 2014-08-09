@@ -20,7 +20,7 @@ class FacebookRepository {
 
     @Cacheable(FacebookConfig.CACHE_NAME)
     FacebookData loadFacebookData(String facebookId, long pairId) {
-        FacebookProfile profile = facebook.userOperations().getUserProfile(facebookId)
+        FacebookProfile profile = facebook.userOperations().getUserProfile()
         FacebookData data = new FacebookData(profile)
         return data
     }
