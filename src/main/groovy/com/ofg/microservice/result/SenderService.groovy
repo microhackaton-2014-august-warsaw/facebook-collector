@@ -3,10 +3,12 @@ package com.ofg.microservice.result
 import com.sun.media.sound.ModelDestination
 import groovy.transform.CompileStatic
 import groovy.util.logging.Slf4j
+import org.slf4j.MDC
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.jms.core.JmsTemplate
 import org.springframework.jms.core.MessageCreator
 import org.springframework.stereotype.Service
+import scala.util.parsing.combinator.testing.Str
 
 import javax.jms.Destination
 import javax.jms.JMSException
@@ -26,7 +28,8 @@ class SenderService {
     final static String PAIR_ID = "PAIR_ID"
     final static String TOPIC_NAME = "facebook";
 
-    public void post(String data, String pairId){
+    public void post(String data, long pairId){
+        MDC.put("", String.valueOf(pairId))
        //Destination destination = new Destination()
        template.send(TOPIC_NAME, new MessageCreator() {
            public Message createMessage(Session session) throws JMSException {

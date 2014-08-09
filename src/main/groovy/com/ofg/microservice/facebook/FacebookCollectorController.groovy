@@ -1,6 +1,7 @@
 package com.ofg.microservice.facebook
 
 import groovy.util.logging.Slf4j
+import org.apache.log4j.MDC
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.web.bind.annotation.PathVariable
 import org.springframework.web.bind.annotation.RequestMapping
@@ -27,7 +28,13 @@ class FacebookCollectorController {
     @ResponseStatus(OK)
     @RequestMapping(method = GET, value = '/{facebookId}/{pairId}', produces = 'application/json')
     void getPlacesFromTweets(@PathVariable @NotNull String facebookId, @PathVariable @NotNull long pairId) {
-        collector.collectAndPassToAnalyzers(facebookId, pairId)
+        try {
+            MDC.put("correlationId", pairId)
+            collector.collectAndPassToAnalyzers(facebookId, pairId)
+        }
+        finally {
+            MDC.clear()
+        }
     }
 
 }
