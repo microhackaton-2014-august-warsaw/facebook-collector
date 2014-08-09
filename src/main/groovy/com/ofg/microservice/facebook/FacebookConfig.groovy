@@ -57,6 +57,6 @@ class FacebookConfig implements EnvironmentAware {
         cacheConfiguration.setTimeToLiveSeconds(60 * 10)
         net.sf.ehcache.config.Configuration config = new net.sf.ehcache.config.Configuration()
         config.addCache(cacheConfiguration)
-        return new EhCacheCacheManager( net.sf.ehcache.CacheManager.newInstance(config) )
+        return new EhCacheCacheManager(net.sf.ehcache.CacheManager.newInstance(config))
     }
 }
