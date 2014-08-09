@@ -30,6 +30,9 @@ class FacebookCollectorController {
     @RequestMapping(method = GET, value = '/{facebookId}/{pairId}', produces = 'application/json')
     Callable<Void> getPlacesFromTweets(@PathVariable @NotNull String facebookId, @PathVariable @NotNull long pairId) {
         collector.collectAndPassToAnalyzers(facebookId, pairId)
+        return {
+            log.info("Facebook collector called for facebookId: ${facebookId} and pairId: ${pairId}")
+        } as Callable<Void>
     }
 
 }
