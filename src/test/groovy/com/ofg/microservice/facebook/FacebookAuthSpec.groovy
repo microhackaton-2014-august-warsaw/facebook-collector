@@ -4,8 +4,10 @@ import org.springframework.social.connect.Connection
 import org.springframework.social.facebook.api.Facebook
 import org.springframework.social.facebook.connect.FacebookConnectionFactory
 import org.springframework.social.oauth2.AccessGrant
+import spock.lang.Ignore
 import spock.lang.Specification
 
+@Ignore
 class FacebookAuthSpec extends Specification {
 
     def 'should create authorized facebook instance'() {
