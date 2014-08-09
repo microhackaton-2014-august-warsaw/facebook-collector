@@ -29,8 +29,6 @@ class SenderService {
     final static String TOPIC_NAME = "facebook";
 
     public void post(String data, long pairId){
-        MDC.put("", String.valueOf(pairId))
-       //Destination destination = new Destination()
        template.send(TOPIC_NAME, new MessageCreator() {
            public Message createMessage(Session session) throws JMSException {
                TextMessage message = session.createTextMessage(data);
