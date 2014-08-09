@@ -4,6 +4,7 @@ import com.ofg.infrastructure.environment.EnvironmentSetupVerifier
 import groovy.transform.TypeChecked
 import org.springframework.boot.SpringApplication
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration
+import org.springframework.boot.autoconfigure.social.FacebookAutoConfiguration
 import org.springframework.cache.annotation.EnableCaching
 import org.springframework.context.annotation.ComponentScan
 import org.springframework.context.annotation.Configuration
@@ -12,7 +13,7 @@ import org.springframework.scheduling.annotation.EnableAsync
 
 @TypeChecked
 @Configuration
-@EnableAutoConfiguration
+@EnableAutoConfiguration(exclude = [FacebookAutoConfiguration])
 @EnableAspectJAutoProxy(proxyTargetClass = true)
 @ComponentScan(basePackages = ["com.ofg.microservice", "com.mangofactory.swagger"])
 //@EnableCaching

@@ -1,4 +1,4 @@
-package com.ofg.microservice.result
+package com.ofg.microservice.facebook
 
 import com.ofg.microservice.Application
 import org.junit.Test
@@ -8,16 +8,15 @@ import org.springframework.boot.test.SpringApplicationContextLoader
 import org.springframework.test.context.ContextConfiguration
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner
 
-/**
- * Created by januszsidor on 09/08/14.
- */
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(classes = Application.class, loader = SpringApplicationContextLoader.class)
-class SenderServiceTest extends GroovyTestCase {
+class FacebookDataBroadcasterTest extends GroovyTestCase {
+
     @Autowired
-    SenderService senderService
+    FacebookDataBroadcaster broadcaster
+
     @Test
     void testPost() {
-        senderService.post("sasas", 111);
+        broadcaster.broadcast(new FacebookData(), 111L);
     }
 }

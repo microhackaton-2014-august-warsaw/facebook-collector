@@ -1,7 +1,10 @@
 package com.ofg.microservice.facebook
 
+import org.springframework.scheduling.annotation.Async
+
 public interface FacebookCollector {
 
-    void collectAndPassToAnalyzers(String facebookId, long pairId)
+    @Async
+    void collectAndPassToAnalyzers(long pairId)
 
 }
