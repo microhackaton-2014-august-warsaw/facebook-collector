@@ -1,29 +1,27 @@
-package com.ofg.base
+package com.ofg.microservice.facebook
 
-import com.ofg.microservice.facebook.FacebookData
-import com.ofg.microservice.facebook.FacebookRepository
 import org.springframework.social.connect.Connection
 import org.springframework.social.facebook.api.Facebook
 import org.springframework.social.facebook.connect.FacebookConnectionFactory
 import org.springframework.social.oauth2.AccessGrant
 import spock.lang.Specification
 
-class FacebookAuthSpec extends Specification{
+class FacebookAuthSpec extends Specification {
 
-    def 'should create authorized facebook instance'(){
+    def 'should create authorized facebook instance'() {
         given:
             Facebook facebook = facebook();
         expect:
             facebook.isAuthorized()
     }
 
-    def ' '(){
+    def 'qqq'(){
         given:
             FacebookRepository repository = new FacebookRepository(facebook())
         when:
             FacebookData data = repository.loadFacebookData('1795620771', 111L)
         then:
-            true
+            data.profile != null
     }
 
     Facebook facebook(){

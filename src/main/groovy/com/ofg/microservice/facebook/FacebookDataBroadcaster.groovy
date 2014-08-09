@@ -15,19 +15,26 @@ import org.springframework.stereotype.Component
 @Component
 @TypeChecked
 class FacebookDataBroadcaster {
-    final static String TOPIC_NAME = "facebook";
+
+    final static String TOPIC_NAME = 'facebook';
+
+    // FIXME use proper bean
+    private final ObjectWriter ow = new ObjectMapper().writer().withDefaultPrettyPrinter();
+
+    final RabbitTemplate template;
+
     @Autowired
-    RabbitTemplate template;
+    FacebookDataBroadcaster(RabbitTemplate template) {
+        this.template = template
+    }
 
     public void broadcast(FacebookData data, long pairId){
-        ObjectWriter ow = new ObjectMapper().writer().withDefaultPrettyPrinter();
         String json = ow.writeValueAsString(data);
 
         Message message = MessageBuilder.withBody(json.getBytes())
                	.setContentType(MessageProperties.CONTENT_TYPE_JSON)
-               	.setMessageId(String.valueOf(pairId))
                	.build();
 
-        template.send(TOPIC_NAME, "", message);
+        template.send(TOPIC_NAME, '', message);
     }
 }

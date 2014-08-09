@@ -1,12 +1,17 @@
 package com.ofg.microservice.facebook
 
-import org.springframework.social.facebook.api.FacebookProfile;
+import org.springframework.social.facebook.api.FacebookProfile
+import org.springframework.social.facebook.api.PagedList
+import org.springframework.social.facebook.api.Post;
 
 class FacebookData {
 
-    @Delegate final FacebookProfile profile
+    String corelationId
 
-    FacebookData(FacebookProfile profile) {
-        this.profile = profile
-    }
+    long pairId
+
+    FacebookProfile profile
+
+    PagedList<Post> feed
+
 }

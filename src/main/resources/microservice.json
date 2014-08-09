@@ -2,7 +2,6 @@
     "pl": {
         "this": "pl/microhackaton/facebook-collector",
         "dependencies": {
-            //"analyzer" : "pl/microhackaton/facebook-analyzer"
         }
     }
 }
