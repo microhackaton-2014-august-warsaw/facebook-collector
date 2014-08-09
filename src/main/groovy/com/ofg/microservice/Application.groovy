@@ -22,7 +22,7 @@ import org.springframework.amqp.core.BindingBuilder;
 @EnableAutoConfiguration(exclude = [FacebookAutoConfiguration])
 @EnableAspectJAutoProxy(proxyTargetClass = true)
 @ComponentScan(basePackages = ["com.ofg.microservice", "com.mangofactory.swagger"])
-//@EnableCaching
+@EnableCaching
 @EnableAsync
 class Application {
     final static String queueName = "facebook";

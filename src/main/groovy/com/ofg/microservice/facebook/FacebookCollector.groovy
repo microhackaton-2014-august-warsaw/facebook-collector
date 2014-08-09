@@ -5,6 +5,6 @@ import org.springframework.scheduling.annotation.Async
 public interface FacebookCollector {
 
     @Async
-    void collectAndPassToAnalyzers(long pairId)
+    void collectAndPassToAnalyzers(String facebookId, long pairId)
 
 }
