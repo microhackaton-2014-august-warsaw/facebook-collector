@@ -15,7 +15,7 @@ import org.springframework.scheduling.annotation.EnableAsync
 @EnableAutoConfiguration
 @EnableAspectJAutoProxy(proxyTargetClass = true)
 @ComponentScan(basePackages = ["com.ofg.microservice", "com.mangofactory.swagger"])
-@EnableCaching
+//@EnableCaching
 @EnableAsync
 class Application {
 

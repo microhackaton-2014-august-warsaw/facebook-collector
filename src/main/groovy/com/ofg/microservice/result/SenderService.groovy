@@ -28,11 +28,12 @@ class SenderService {
     final static String PAIR_ID = "PAIR_ID"
     final static String TOPIC_NAME = "facebook";
 
+
     public void post(String data, long pairId){
        template.send(TOPIC_NAME, new MessageCreator() {
            public Message createMessage(Session session) throws JMSException {
                TextMessage message = session.createTextMessage(data);
-               message.setIntProperty(PAIR_ID, pairId);
+               message.setLongProperty(PAIR_ID, pairId);
                log.info("Sending for pairID {} message: {}",  pairId, data);
                return message;
            }
